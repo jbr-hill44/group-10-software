@@ -2,7 +2,7 @@
 # Open this file using VS Studio or your preferred IDE
 # In VS Studio, click view in the top menu and select Terminal
 # run cls to clear the screen
-# Then run pip install install streamlit and pip install sentence-transformers
+# Then run pip install streamlit and pip install sentence-transformers
 # run cls to clear the screen
 # Then python -m streamlit run .\matchmaking_demo.py
 # This should render the demo
