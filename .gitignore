@@ -1,2 +1,4 @@
 # created by virtualenv automatically
 *.env
+/utils/db_handler.py
+/utils/otp_handler.py
