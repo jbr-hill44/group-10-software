@@ -1,6 +1,7 @@
 import streamlit as st
 from sentence_transformers import SentenceTransformer, util
-from utils.db_handler import get_projects, get_data
+#from utils.db_handler import get_projects, get_data
+from utils.supa_db_handler import get_projects
 
 def headers():
     TITLE = st.title(' 👩‍🎓Academic Matchmaking🧑‍🎓')

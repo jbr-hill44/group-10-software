@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.db_handler import authenticate_user
+from utils.supa_db_handler import authenticate_user
 #from page.matching import  headers
 import time
 

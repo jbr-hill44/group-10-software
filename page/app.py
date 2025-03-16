@@ -1,5 +1,6 @@
 import streamlit as st
-from utils.db_handler import get_users
+#from utils.db_handler import get_users
+from utils.supa_db_handler import get_users
 from utils.init_session import reset_session
 from page.matching import guest_match, user_match, match
 # from page.matching import headers
