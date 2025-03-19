@@ -1,7 +1,7 @@
 import streamlit as st
 import re
 from utils.otp_handler import generate_otp, send_email
-from utils.supa_db_handler import save_user, verify_duplicate_user
+from utils.db_handler import save_user, verify_duplicate_user
 # from page.matching import headers
 import time
 
@@ -33,7 +33,7 @@ def verifyOTP(otp_input):
     else:
         st.error('Invalid OTP')
 
-def signup_page(extra_input_params=False, confirmPass=False):
+def signup_page(extra_input_params=True, confirmPass=True):
     st.title(' 👩‍🎓Academic Matchmaking🧑‍🎓')
     st.subheader('Find the Best Research Match Based on Your Skills')
     #headers()[0]
@@ -87,18 +87,23 @@ def signup_page(extra_input_params=False, confirmPass=False):
                 confirm_password = st.text_input('Confirm Password', type='password')
             
             # Extra input fields if any
-            # if extra_input_params:
-            #     for input_param, type in st.session_state['extra_input_params'].items():
+            extra_input_params = {'role': ['student', 'academic']}
+            if extra_input_params:
+            #      for input_param, type in st.session_state['extra_input_params'].items():
             #         input_field(input_param, type)
 
-            st.session_state['role'] = st.selectbox('Select your role', ['student', 'academic'], key = 'user_role')
+                st.session_state['role'] = st.selectbox('Select your role', ['student', 'academic'], key = 'user_role')
             
             # Validate all required fields before proceeding
             if st.session_state['email'] and st.session_state['password'] and \
                (not confirmPass or (confirmPass and st.session_state['password'] == confirm_password)):
                 
-                if extra_input_params and not all(st.session_state.get(param) for param in st.session_state['extra_input_params']):
+                # if extra_input_params and not all(st.session_state.get(param) for param in st.session_state['extra_input_params']):
+                #     st.error('Please fill in all required fields')
+
+                if extra_input_params and not(st.session_state['extra_input_params']):
                     st.error('Please fill in all required fields')
+
                 else:
                     if st.button('Register'):
                         st.session_state['verifying'] = True
