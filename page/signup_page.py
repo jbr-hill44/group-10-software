@@ -1,7 +1,7 @@
 import streamlit as st
 import re
 from utils.otp_handler import generate_otp, send_email
-from utils.db_handler import save_user, verify_duplicate_user
+from utils.supa_db_handler import save_user, verify_duplicate_user
 # from page.matching import headers
 import time
 

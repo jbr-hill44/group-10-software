@@ -45,7 +45,7 @@ def authenticate_user(email, password):
     if stored_hashed_password is None:
         return False
 
-    stored_hashed_password = stored_hashed_password[0]  # Extract the hash from the tuple
+    stored_hashed_password = stored_hashed_password["password"]  # Extract the hash from the tuple
 
     # Compare the provided password with the stored hashed password
     return bcrypt.checkpw(password.encode(), stored_hashed_password.encode())

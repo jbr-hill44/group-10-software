@@ -13,7 +13,7 @@ def get_matching(projects):
     # Sample User input
     student_skills = st.text_area('Enter Your Skills & Research Interests', 'Machine Learning, Data Science, Python')
     # topics = get_data()['project title'].tolist()
-    topics = get_projects()['project title'].tolist()
+    topics = get_projects()['project_title'].tolist()
 
     if st.button('Find Matches'):
         student_embed = model.encode(student_skills, convert_to_tensor=True)        
@@ -33,17 +33,16 @@ def get_matching(projects):
 
 def user_match(): 
     '''Match a registered user'''      
-    projects = get_projects()['description'].tolist()  # Projects from DB
+    projects = get_projects()['summary_expanded'].tolist()  # Projects from DB
     get_matching(projects)                             # Compute similarity scores
 
 
 def guest_match():
     '''Match a guest'''
-    #projects = get_data()['description'].tolist()       # Get project titles from table
-    projects = get_projects()['description'].tolist()       # Get project titles from db
+    projects = get_projects()['summary_expanded'].tolist()       # Get project titles from db
     get_matching(projects)                                  # Compute similarity scores
             
 def match(): 
     '''Match skills'''      
-    projects = get_projects()['description'].tolist()  # Projects from DB
+    projects = get_projects()['summary_expanded'].tolist()  # Projects from DB
     get_matching(projects)
