@@ -14,6 +14,8 @@ def get_matching(projects):
     student_skills = st.text_area('Enter Your Skills & Research Interests', 'Machine Learning, Data Science, Python')
     # topics = get_data()['project title'].tolist()
     topics = get_projects()['project_title'].tolist()
+    researcher = get_projects()['staff_name'].tolist()
+    summaries = get_projects()['summary_expanded'].tolist()
 
     if st.button('Find Matches'):
         student_embed = model.encode(student_skills, convert_to_tensor=True)        
@@ -26,23 +28,30 @@ def get_matching(projects):
         st.write(f'### Top {topn} Research Matches:')
         rank = 0
         for idx in sorted_indices[0][:topn]:  # Show top n matches
-            #st.write(f'✅ {rank + 1}. {projects[idx]} (Match Score: {similarities[0, idx] * 100:.2f}%)')
-            st.write(f'✅ {rank + 1}. {topics[idx]} (Match Score: {similarities[0, idx] * 100:.2f}%)')
+            project_title = topics[idx]
+            researcher_name = researcher[idx]
+            summary = summaries[idx]
+            match_score = similarities[0,idx] * 100
+            key = f"show_{idx}"
+            st.write(f'✅ {rank + 1}. {project_title} (Match Score: {match_score:.2f}%)')
+            with st.expander("View Details"):
+                st.write(f"{researcher_name}")
+                st.write(f"{summary}")
             rank += 1
         
 
 def user_match(): 
     '''Match a registered user'''      
-    projects = get_projects()['summary_expanded'].tolist()  # Projects from DB
+    projects = get_projects()['project_title'].tolist()  # Projects from DB
     get_matching(projects)                             # Compute similarity scores
 
 
 def guest_match():
     '''Match a guest'''
-    projects = get_projects()['summary_expanded'].tolist()       # Get project titles from db
+    projects = get_projects()['project_title'].tolist()       # Get project titles from db
     get_matching(projects)                                  # Compute similarity scores
             
 def match(): 
     '''Match skills'''      
-    projects = get_projects()['summary_expanded'].tolist()  # Projects from DB
+    projects = get_projects()['project_title'].tolist()  # Projects from DB
     get_matching(projects)
