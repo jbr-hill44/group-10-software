@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 from config import sender_mail, sender_mail_pass
 
-# Load environment variables from .env file
+# Load environment variables from .config file
 load_dotenv()
 
 def generate_otp():
