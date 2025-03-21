@@ -3,6 +3,7 @@ import random
 import string
 import os
 from dotenv import load_dotenv
+from config import sender_mail, sender_mail_pass
 
 # Load environment variables from .env file
 load_dotenv()
@@ -13,8 +14,8 @@ def generate_otp():
     return otp
 
 def send_email(email, otp):
-    sender_email = os.getenv('sender_mail')
-    password = os.getenv('sender_mail_pass')  # your App Password if 2-factor authentication (2FA) is enabled
+    sender_email = sender_mail
+    password = sender_mail_pass  # your App Password if 2-factor authentication (2FA) is enabled
     
     # Initialize the Yagmail SMTP client
     yag = yagmail.SMTP(sender_email, password)
