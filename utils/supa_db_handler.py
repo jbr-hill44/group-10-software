@@ -7,7 +7,7 @@ from supabase import create_client, Client
 
 load_dotenv()
 
-# Define parameters needed to conect to supabase
+# Define parameters needed to connect to supabase
 supabase_params = {
     "url" : SUPABASE_URL,
     "key" : SUPABASE_KEY

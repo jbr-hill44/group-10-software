@@ -2,7 +2,9 @@ import streamlit as st
 from page.login_page import login_page
 from page.signup_page import signup_page
 from page.app import app_page
+from page.all_projects import  all_projects
 from utils.init_session import init_session, reset_session
+
 
 init_session()
 
@@ -26,3 +28,6 @@ else:
             extra_input_params=True,
             confirmPass = True
         )
+
+if st.session_state['page'] == 'database':
+    all_projects()
