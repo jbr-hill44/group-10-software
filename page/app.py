@@ -25,9 +25,10 @@ def app_page():
     st.subheader('Find the Best Research Match Based on Your Skills')
     #headers()[0]
     #headers()[1]
-    users = get_users()
-    if users:
-        st.table(users)
+
+    #users = get_users()
+    #if users:
+    #    st.table(users)
 
     if st.session_state['guest_mode']:
         match()
