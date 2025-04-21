@@ -34,20 +34,17 @@ def verifyOTP(otp_input):
         st.error('Invalid OTP')
 
 def signup_page(extra_input_params=True, confirmPass=True):
-    st.title(' 👩‍🎓Academic Matchmaking🧑‍🎓')
-    st.subheader('Find the Best Research Match Based on Your Skills')
-    #headers()[0]
-    #headers()[1]
-
     """Render the signup page with optional extra input parameters and password confirmation."""
+    st.title(' 👩‍🎓Academic Matchmaking🧑‍🎓')    # main title
+    st.subheader('Find the Best Research Match Based on Your Skills')   # subtitle
     if st.session_state['verifying']:
-        # Check if the user already exists
-        if verify_duplicate_user(st.session_state['email']):
+        if verify_duplicate_user(st.session_state['email']):    # Check if the user already exists
             st.error('User already exists')
             time.sleep(1)
             st.session_state['verifying'] = False
             st.rerun()
-        
+
+        # send an OTP to provided email
         st.write('Verifying OTP...')
         st.info(f"OTP has been sent to {st.session_state['email']}")
         print(st.session_state['otp'])
@@ -55,17 +52,20 @@ def signup_page(extra_input_params=True, confirmPass=True):
             st.session_state['otp'] = generate_otp()
             print(st.session_state['otp'])
             send_email(st.session_state['email'], st.session_state['otp'])
-                
+
+        # user enters the sent OTP
         with st.empty().container():
             otp_input = st.text_input(label='Enter OTP', placeholder='Enter OTP')
             if st.button('Verify OTP'):
                 verifyOTP(otp_input)
-                
+
+            # user request a new OTP if needed
             if st.button('Resend OTP'):
                 sent = False
                 st.session_state['otp'] = generate_otp()
                 send_email(st.session_state['email'], st.session_state['otp'])
-        
+                
+    # login with email and password   
     else:
         if st.button('Back to Login'):
             st.session_state['page'] = 'login'
