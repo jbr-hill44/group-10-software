@@ -54,7 +54,7 @@ def all_projects():
     def filter_projects(data, selected_keywords):
         if not selected_keywords:
             return project_data
-        return project_data[project_data['key_words'].apply(lambda k: any(kw in k for kw in selected_keywords))]
+        return project_data[project_data['key_words'].apply(lambda k: all(kw in k for kw in selected_keywords))]
 
     filtered_projects = filter_projects(project_data, selected_keywords)
 
