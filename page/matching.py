@@ -42,16 +42,16 @@ def get_matching(projects): # cheeky comment
 
 def user_match(): 
     '''Match a registered user'''      
-    projects = get_projects()['project_title'].tolist()  # Projects from DB
+    projects = get_projects()['summary_expanded'].tolist()  # Projects from DB
     get_matching(projects)                             # Compute similarity scores
 
 
 def guest_match():
     '''Match a guest'''
-    projects = get_projects()['project_title'].tolist()       # Get project titles from db
+    projects = get_projects()['summary_expanded'].tolist()       # Get project titles from db
     get_matching(projects)                                  # Compute similarity scores
             
 def match(): 
     '''Match skills'''      
-    projects = get_projects()['project_title'].tolist()  # Projects from DB
+    projects = get_projects()['summary_expanded'].tolist()  # Projects from DB
     get_matching(projects)
